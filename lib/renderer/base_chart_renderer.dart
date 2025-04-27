@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
 export '../chart_style.dart';
+typedef PriceFormat = String Function(double text);
 
 abstract class BaseChartRenderer<T> {
   double maxValue, minValue;
   late double scaleY;
   double topPadding;
+  PriceFormat priceFormat;
   Rect chartRect;
-  int fixedLength;
   Paint chartPaint = Paint()
     ..isAntiAlias = true
     ..filterQuality = FilterQuality.high
@@ -24,7 +25,7 @@ abstract class BaseChartRenderer<T> {
     required this.maxValue,
     required this.minValue,
     required this.topPadding,
-    required this.fixedLength,
+    required this.priceFormat,
     required Color gridColor,
   }) {
     if (maxValue == minValue) {
@@ -42,7 +43,7 @@ abstract class BaseChartRenderer<T> {
     if (n == null || n.isNaN) {
       return "0.00";
     } else {
-      return n.toStringAsFixed(fixedLength);
+      return priceFormat(n);
     }
   }
 

@@ -100,7 +100,9 @@ class _MyHomePageState extends State<MyHomePage> {
               mainState: _mainState,
               volHidden: _volHidden,
               secondaryStateLi: _secondaryStateLi.toSet(),
-              fixedLength: 2,
+              priceFormat: (value){
+                return '${value.toStringAsFixed(2)}';
+              },
               timeFormat: TimeFormat.YEAR_MONTH_DAY,
             ),
             if (showLoading)

@@ -47,7 +47,7 @@ class KChartWidget extends StatefulWidget {
   // If it is false, it will be scrolled to the end of the left side of the screen.
   final Function(bool)? onLoadMore;
 
-  final int fixedLength;
+  final PriceFormat priceFormat;
   final List<int> maDayList;
   final int flingTime;
   final double flingRatio;
@@ -78,7 +78,7 @@ class KChartWidget extends StatefulWidget {
     this.chartTranslations = const ChartTranslations(),
     this.timeFormat = TimeFormat.YEAR_MONTH_DAY,
     this.onLoadMore,
-    this.fixedLength = 2,
+    required this.priceFormat,
     this.maDayList = const [5, 10, 20],
     this.flingTime = 600,
     this.flingRatio = 0.5,
@@ -167,7 +167,7 @@ class _KChartWidgetState extends State<KChartWidget>
       isLine: widget.isLine,
       hideGrid: widget.hideGrid,
       showNowPrice: widget.showNowPrice,
-      fixedLength: widget.fixedLength,
+      priceFormat: widget.priceFormat,
       maDayList: widget.maDayList,
       verticalTextAlignment: widget.verticalTextAlignment,
     );
@@ -375,7 +375,7 @@ class _KChartWidgetState extends State<KChartWidget>
               chartTranslations: widget.chartTranslations,
               materialInfoDialog: widget.materialInfoDialog,
               timeFormat: widget.timeFormat,
-              fixedLength: widget.fixedLength,
+              priceFormat: widget.priceFormat,
             ),
           );
         }
@@ -389,7 +389,7 @@ class _KChartWidgetState extends State<KChartWidget>
             chartTranslations: widget.chartTranslations,
             materialInfoDialog: widget.materialInfoDialog,
             timeFormat: widget.timeFormat,
-            fixedLength: widget.fixedLength,
+            priceFormat: widget.priceFormat,
           ),
         );
       },
