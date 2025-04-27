@@ -60,7 +60,7 @@ class PopupInfoView extends StatelessWidget {
         _buildColorItem(chartTranslations.changeAmount, priceFormat(upDown), upDown > 0),
         _buildColorItem(chartTranslations.change, '${upDownPercent.toStringAsFixed(2)}%', upDownPercent > 0),
         _buildItem(chartTranslations.vol, NumberUtil.format(entity.vol)),
-        if (entityAmount != null) _buildItem(chartTranslations.amount, entityAmount.toInt().toString()),
+        if (entityAmount != null) _buildItem(chartTranslations.amount, priceFormat(entityAmount)),
       ],
     );
   }
