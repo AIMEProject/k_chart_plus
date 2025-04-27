@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 export '../chart_style.dart';
 typedef PriceFormat = String Function(double text);
+typedef MyTimeFormat = List<String> Function();
 
 abstract class BaseChartRenderer<T> {
   double maxValue, minValue;

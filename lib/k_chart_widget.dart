@@ -10,21 +10,6 @@ enum MainState { MA, BOLL, NONE }
 // enum SecondaryState { MACD, KDJ, RSI, WR, CCI, NONE }
 enum SecondaryState { MACD, KDJ, RSI, WR, CCI } //no support NONE
 
-class TimeFormat {
-  static const List<String> YEAR_MONTH_DAY = [yyyy, '-', mm, '-', dd];
-  static const List<String> YEAR_MONTH_DAY_WITH_HOUR = [
-    yyyy,
-    '-',
-    mm,
-    '-',
-    dd,
-    ' ',
-    HH,
-    ':',
-    nn
-  ];
-}
-
 class KChartWidget extends StatefulWidget {
   final List<KLineEntity>? datas;
   final MainState mainState;
@@ -39,7 +24,7 @@ class KChartWidget extends StatefulWidget {
   final bool showInfoDialog;
   final bool materialInfoDialog; // Material Style Information Popup
   final ChartTranslations chartTranslations;
-  final List<String> timeFormat;
+  final MyTimeFormat timeFormat;
   final double mBaseHeight;
 
   // It will be called when the screen scrolls to the end.
@@ -76,7 +61,7 @@ class KChartWidget extends StatefulWidget {
     this.showInfoDialog = true,
     this.materialInfoDialog = true,
     this.chartTranslations = const ChartTranslations(),
-    this.timeFormat = TimeFormat.YEAR_MONTH_DAY,
+    required this.timeFormat,
     this.onLoadMore,
     required this.priceFormat,
     this.maDayList = const [5, 10, 20],

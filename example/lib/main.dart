@@ -29,7 +29,20 @@ class MyHomePage extends StatefulWidget {
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
-
+class TimeFormat {
+  static const List<String> YEAR_MONTH_DAY = [yyyy, '-', mm, '-', dd];
+  static const List<String> YEAR_MONTH_DAY_WITH_HOUR = [
+    yyyy,
+    '-',
+    mm,
+    '-',
+    dd,
+    ' ',
+    HH,
+    '::::',
+    nn
+  ];
+}
 class _MyHomePageState extends State<MyHomePage> {
   List<KLineEntity>? datas;
   bool showLoading = true;
@@ -97,13 +110,16 @@ class _MyHomePageState extends State<MyHomePage> {
               chartColors,
               mBaseHeight: 360,
               isTrendLine: false,
+              verticalTextAlignment: VerticalTextAlignment.right,
               mainState: _mainState,
               volHidden: _volHidden,
               secondaryStateLi: _secondaryStateLi.toSet(),
               priceFormat: (value){
-                return '${value.toStringAsFixed(2)}';
+                return '${value.toStringAsFixed(2)}###';
               },
-              timeFormat: TimeFormat.YEAR_MONTH_DAY,
+              timeFormat: (){
+                return TimeFormat.YEAR_MONTH_DAY_WITH_HOUR;
+              }
             ),
             if (showLoading)
               Container(

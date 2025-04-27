@@ -253,7 +253,7 @@ class ChartPainter extends BaseChartPainter {
     var index = calculateSelectedX(selectX);
     KLineEntity point = getItem(index);
 
-    TextPainter tp = getTextPainter(point.close, chartColors.crossTextColor);
+    TextPainter tp = getTextPainter(priceFormat(point.close), chartColors.crossTextColor);
     double textHeight = tp.height;
     double textWidth = tp.width;
 

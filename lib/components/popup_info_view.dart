@@ -12,7 +12,7 @@ class PopupInfoView extends StatelessWidget {
   final ChartColors chartColors;
   final ChartTranslations chartTranslations;
   final bool materialInfoDialog;
-  final List<String> timeFormat;
+  final MyTimeFormat timeFormat;
   final PriceFormat priceFormat;
 
   const PopupInfoView({
@@ -101,6 +101,6 @@ class PopupInfoView extends StatelessWidget {
 
   String getDate(int? date) => dateFormat(
         DateTime.fromMillisecondsSinceEpoch(date ?? DateTime.now().millisecondsSinceEpoch),
-        timeFormat,
+        timeFormat(),
       );
 }
