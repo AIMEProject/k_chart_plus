@@ -50,6 +50,7 @@ abstract class BaseChartPainter extends CustomPainter {
 
   // format time
   List<String> mFormats = [yyyy, '-', mm, '-', dd, ' ', HH, ':', nn];
+  List<String> infoMFormat = [yyyy, '-', mm, '-', dd, ' ', HH, ':', nn];
   double xFrontPadding;
 
   /// base dimension
@@ -102,25 +103,30 @@ abstract class BaseChartPainter extends CustomPainter {
     if (time >= 24 * 60 * 60 * 28 * 1000) {
       // 月线
       mFormats = [yyyy, '-', mm];
+      infoMFormat = [yyyy, '-', mm];
     } else if (time >= 24 * 60 * 60 * 1000) {
       // 日线
       mFormats = [yyyy, '-', mm, '-', dd];
+      infoMFormat = [yyyy, '-', mm, '-', dd];
     } else if (time >= 60 * 60 * 1000) {
-      if (DateTime.parse(firstTime.toString()).year != DateTime.now().year) {
+      infoMFormat = [yyyy, '-', mm, '-', dd];
+      if (DateTime.fromMillisecondsSinceEpoch(firstTime).year != DateTime.now().year) {
         mFormats = [yyyy, '-', mm, '-', dd];
       } else {
         mFormats = [mm, '-', dd];
       }
     } else if (time >= 60 * 1000) {
-      if (DateTime.parse(firstTime.toString()).year != DateTime.now().year) {
+      infoMFormat = [yy, '-', mm, '-', dd, ' ', HH, ':', nn, ':', ss];
+      if (DateTime.fromMillisecondsSinceEpoch(firstTime).year != DateTime.now().year) {
         mFormats = [yy, '-', mm, '-', dd, ' ', HH, ':', nn, ':', ss];
       } else {
         mFormats = [mm, '-', dd, ' ', HH, ':', nn];
       }
     } else {
-      if (DateTime.parse(firstTime.toString()).year != DateTime.now().year) {
+      infoMFormat = [yy, '-', mm, '-', dd, ' ', HH, ':', nn, ':', ss];
+      if (DateTime.fromMillisecondsSinceEpoch(firstTime).year != DateTime.now().year) {
         mFormats = [yy, '-', mm, '-', dd, ' ', HH, ':', nn, ':', ss];
-      } else if (DateTime.parse(firstTime.toString()).day != DateTime.now().day) {
+      } else if (DateTime.fromMillisecondsSinceEpoch(firstTime).day != DateTime.now().day) {
         mFormats = [mm, '-', dd, ' ', HH, ':', nn];
       } else {
         mFormats = [HH, ':', nn, ':', ss];
